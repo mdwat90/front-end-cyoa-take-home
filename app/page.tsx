@@ -6,7 +6,6 @@ import { MessagesProvider } from './context/MessagesProvider';
 
 const Page: React.FC = () => {
   return (
-
     <UserProvider>
       <MessagesProvider>
         <Home />
