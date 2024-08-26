@@ -1,4 +1,3 @@
-// pages/page.tsx
 import React from 'react';
 import Home from './pages/Home';
 import { UserProvider } from './context/UserProvider';

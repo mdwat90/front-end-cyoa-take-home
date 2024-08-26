@@ -1,4 +1,3 @@
-// components/CommentsList.tsx
 import React, { useEffect, useState } from 'react';
 import { useUserContext } from '../context/UserProvider';
 import { useMessagesContext } from '../context/MessagesProvider';
