@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useUserContext } from '../context/UserProvider';
 import { useMessagesContext } from '../context/MessagesProvider';
 import { Message } from '../types';
-import { Api } from '../../api';
+import { Api } from '@/api';
 
 const useWebSocket = () => {
   const { messages, setMessages } = useMessagesContext();
@@ -11,12 +11,21 @@ const useWebSocket = () => {
   const { userName, showToast } = useUserContext();
 
   useEffect(() => {
-    Api.get('http://localhost:3001/getComments').then(async (data) => {
-      const sortedData = data.sort((a: Message, b: Message) => {
-        return new Date(b.created).getTime() - new Date(a.created).getTime();
-      });
-      setMessages(sortedData);
-    });
+    async function getComments() {
+      try {
+        const data = await Api.get('http://localhost:3001/getComments');
+        if(Array.isArray(data)) {
+          const sortedData = data.sort((a: Message, b: Message) => {
+            return new Date(b.created).getTime() - new Date(a.created).getTime();
+          });
+          setMessages(sortedData);
+        }
+      } catch (error) {
+        throw new Error(error as string);
+      }
+    }
+
+    getComments();
   }, []);
 
   useEffect(() => {

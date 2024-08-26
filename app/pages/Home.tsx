@@ -13,14 +13,15 @@ const { messages, deleteMessages } = useMessagesContext();
 
   return (
     <div className="flex flex-col justify-center items-center min-h-screen">
-        <div className="w-full max-w-2xl">
+        <div className="w-full max-w-2xl flex-none mt-10">
             <CommentForm />
         </div>
-        <div className="w-full max-w-2xl mt-10">
+        <div className="w-full max-w-2xl mt-10 flex-grow">
             <div className="flex justify-between items-center mb-2">
               <h2 className="text-xl font-semibold text-left">Comments</h2>
               <button
                 onClick={deleteMessages}
+                data-testid="delete-all-button"
                 className={`${
                   messages && messages.length > 0 ? 'text-red-500 hover:text-red-700' : 'text-gray-500 cursor-not-allowed'
                 }`}
@@ -29,7 +30,7 @@ const { messages, deleteMessages } = useMessagesContext();
                 Delete All
               </button>
             </div>
-            <div className="overflow-y-auto" style={{ maxHeight: '25vh' }}>
+            <div className="overflow-y-auto bg-gray-800 p-4 rounded" style={{ maxHeight: '40vh' }}>
                 <CommentsList />
             </div>
         </div>

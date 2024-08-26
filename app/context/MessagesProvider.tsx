@@ -2,7 +2,7 @@
  
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { Message } from '../types';
-import { Api } from '../../api';
+import { Api } from '@/api';
 
 interface MessagesContextType {
   messages: Message[];

@@ -10,10 +10,10 @@ const { messages } = useMessagesContext();
 const { userName } = useUserContext();
 
   return (
-    <div className="w-full max-w-2xl mt-8">
+    <div className="w-full max-w-2xl" data-testid="comments-list">
       {messages && messages.length > 0 ? (
         messages.map(({message, name, created}, index) => (
-          <div key={index} className="mb-4 p-4 border rounded shadow-sm">
+          <div key={index} className="mt-4 mb-4 p-4 border rounded shadow-sm" data-testid='comment'>
             <p>{message}</p>
             <p className="text-sm text-gray-500">
               {name === userName ? 'Me' : name} on {formatDate(created)}
@@ -21,7 +21,7 @@ const { userName } = useUserContext();
           </div>
         ))
       ) : (
-        <p>No messages yet.</p>
+        <p className="m-2">No comments yet.</p>
       )}
     </div>
   );
