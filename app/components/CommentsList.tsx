@@ -21,7 +21,7 @@ const { userName } = useUserContext();
           </div>
         ))
       ) : (
-        <p className="m-2">No comments yet.</p>
+        <p className="m-2">No comments yet 👀</p>
       )}
     </div>
   );
