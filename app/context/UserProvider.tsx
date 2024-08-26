@@ -1,12 +1,14 @@
 "use client"
  
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 
 interface UserContextType {
+  disabledSubmit: boolean;
   userName: string;
   message: string;
   toastMessage: string;
   toastVisible: boolean;
+  setDisabledSubmit: (disabled: boolean) => void;
   setUserName: (name: string) => void;
   setMessage: (comment: string) => void;
   showToast: (msg: string) => void;
@@ -32,6 +34,15 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   const [message, setMessage] = useState<string>('');
   const [toastMessage, setToastMessage] = useState<string>('');
   const [toastVisible, setToastVisible ] = useState<boolean>(false);
+  const [ disabledSubmit, setDisabledSubmit ] = useState<boolean>(true);
+
+  useEffect(() => {
+    if(userName && message) {
+      setDisabledSubmit(false);
+    } else {
+      setDisabledSubmit(true);
+    }
+  }, [userName, message]);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
@@ -47,7 +58,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ userName, message, setUserName, setMessage, toastMessage, toastVisible, showToast, hideToast }}>
+    <UserContext.Provider value={{ disabledSubmit, setDisabledSubmit, userName, message, setUserName, setMessage, toastMessage, toastVisible, showToast, hideToast }}>
       {children}
     </UserContext.Provider>
   );

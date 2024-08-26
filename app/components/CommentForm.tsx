@@ -4,8 +4,9 @@ import { FormEvent } from 'react';
 import useWebSocket from '../hooks/useWebSocket';
 import { useUserContext } from '../context/UserProvider';
 
+
 export default function CommentForm() {
-const { userName, setUserName, message, setMessage } = useUserContext();
+  const { disabledSubmit, userName, setUserName, message, setMessage } = useUserContext();
   const { sendMessage } = useWebSocket();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -42,7 +43,8 @@ const { userName, setUserName, message, setMessage } = useUserContext();
       </div>
       <button
         type="submit"
-        className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        className={(disabledSubmit ? 'opacity-50 cursor-not-allowed bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' : "bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" )}
+        disabled={disabledSubmit}
       >
         Submit
       </button>
