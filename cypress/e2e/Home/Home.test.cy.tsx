@@ -3,7 +3,7 @@ describe('Home', () => {
     cy.visit('/');
   })
 
-  it('renders the comments form', () => {
+  it('renders the comments form and list', () => {
     cy.get('form[name="comment-form"]').should('exist');
     cy.get('[data-testid="comments-list"]').should('exist');
   });
