@@ -12,12 +12,15 @@ export default function CommentForm() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    Api.post('http://localhost:3001/createComment', { name: userName, message }).then((data) => {
+    try {
+      const data = await Api.post('http://localhost:3001/createComment', { name: userName, message });
       if(data.id) {
         sendMessage({ name: userName, message, created: new Date() });
         setMessage('');
       }
-    })
+    } catch (error) {
+      console.error('Create comment error:', error);
+    }
   };
 
   return (

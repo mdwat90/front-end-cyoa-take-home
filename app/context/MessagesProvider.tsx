@@ -27,10 +27,15 @@ interface MessagesProviderProps {
 export const MessagesProvider: React.FC<MessagesProviderProps> = ({ children }) => {
   const [ messages, setMessages ] = useState<Message[]>([]);
 
-  const deleteMessages = () => {
-    Api.delete('http://localhost:3001/deleteComments').then(() => {
-      setMessages([]);
-    });
+  const deleteMessages = async () => {
+    try {
+      const data = await Api.delete('http://localhost:3001/deleteComments');
+      if(data.id) {
+        setMessages([]);
+      }
+    } catch (error) {
+      console.error('Delete comments error:', error);
+    }
   }
 
   return (
