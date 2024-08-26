@@ -21,7 +21,7 @@ const useWebSocket = () => {
           setMessages(sortedData);
         }
       } catch (error) {
-        throw new Error(error as string);
+        console.error('Get comments error:', error);
       }
     }
 
