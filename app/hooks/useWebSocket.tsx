@@ -2,9 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useUserContext } from '../context/UserProvider';
 import { useMessagesContext } from '../context/MessagesProvider';
 import { Message } from '../types';
-import { Api } from '@/api';
+import { Api } from '@/app/api';
 
-const useWebSocket = () => {
+interface UseWebSocketReturnType {
+  sendMessage: (message: Message) => void;
+  messages: Message[];
+}
+
+const useWebSocket = (): UseWebSocketReturnType => {
   const { messages, setMessages } = useMessagesContext();
   const [ws, setWs] = useState<WebSocket | null>(null);
   const { userName, showToast } = useUserContext();

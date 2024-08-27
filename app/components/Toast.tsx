@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React, { ReactElement } from 'react';
 
 interface ToastProps {
   message: string;
@@ -8,7 +8,7 @@ interface ToastProps {
   onClose: () => void;
 }
 
-const Toast: React.FC<ToastProps> = ({ message, visible, onClose }) => {
+const Toast = ({ message, visible, onClose }: ToastProps): ReactElement | null => {
   if (!visible) return null;
 
   return (

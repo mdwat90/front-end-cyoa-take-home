@@ -1,8 +1,8 @@
 "use client"
  
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode, ReactElement } from 'react';
 import { Message } from '../types';
-import { Api } from '@/api';
+import { Api } from '@/app/api';
 
 interface MessagesContextType {
   messages: Message[];
@@ -24,7 +24,7 @@ interface MessagesProviderProps {
   children: ReactNode;
 }
 
-export const MessagesProvider: React.FC<MessagesProviderProps> = ({ children }) => {
+export const MessagesProvider = ({ children }: MessagesProviderProps): ReactElement => {
   const [ messages, setMessages ] = useState<Message[]>([]);
 
   const deleteMessages = async () => {

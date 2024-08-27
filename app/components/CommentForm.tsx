@@ -1,12 +1,12 @@
 "use client";
 
-import { FormEvent } from 'react';
+import { FormEvent, ReactElement } from 'react';
 import useWebSocket from '../hooks/useWebSocket';
 import { useUserContext } from '../context/UserProvider';
-import { Api } from '@/api';
+import { Api } from '@/app/api';
 
 
-export default function CommentForm() {
+const CommentForm = (): ReactElement => {
   const { disabledSubmit, userName, setUserName, message, setMessage } = useUserContext();
   const { sendMessage } = useWebSocket();
 
@@ -62,3 +62,5 @@ export default function CommentForm() {
     </form>
   );
 }
+
+export default CommentForm;

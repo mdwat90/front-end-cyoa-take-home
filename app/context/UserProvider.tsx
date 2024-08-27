@@ -1,6 +1,6 @@
 "use client"
  
-import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useEffect, ReactElement } from 'react';
 
 interface UserContextType {
   disabledSubmit: boolean;
@@ -29,7 +29,7 @@ interface UserProviderProps {
   children: ReactNode;
 }
 
-export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
+export const UserProvider = ({ children }: UserProviderProps): ReactElement => {
   const [userName, setUserName] = useState<string>('');
   const [message, setMessage] = useState<string>('');
   const [toastMessage, setToastMessage] = useState<string>('');

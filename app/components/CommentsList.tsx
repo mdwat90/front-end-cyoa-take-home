@@ -1,11 +1,11 @@
 "use client"
 
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { formatDate } from '../utils';
 import { useUserContext } from '../context/UserProvider';
 import { useMessagesContext } from '../context/MessagesProvider';
 
-const CommentsList: React.FC = () => {
+const CommentsList = (): ReactElement => {
 const { messages } = useMessagesContext();
 const { userName } = useUserContext();
 
